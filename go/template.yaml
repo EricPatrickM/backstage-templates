@@ -13,6 +13,7 @@ spec:
     required:
     - component_id
     - environment
+    - description
     properties:
       component_id:
         title: Component name
@@ -26,6 +27,10 @@ spec:
         enum:
         - dev
         - prod
+      description:
+        title: Description
+        type: string
+        description: The description of the project
 
   steps:
   - id: fetch-base
@@ -36,6 +41,7 @@ spec:
       values:
         app_name: ${{parameters.component_id}}
         app_env: ${{parameters.environment}}
+        app_description: ${{parameters.description}}
 
   - id: publish
     name: Publish
@@ -44,7 +50,7 @@ spec:
       allowedHosts:
       - github.com
       description: This is ${{ parameters.component_id }}
-      repoUrl: github.com?owner=ricardoandre-97&repo=${{parameters.component_id}}
+      repoUrl: github.com?owner=EricPatrickM&repo=${{parameters.component_id}}
       protectDefaultBranch: false
       repoVisibility: public
 
